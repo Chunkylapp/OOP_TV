@@ -1,27 +1,34 @@
 package pages;
 
-public class SeeDetails implements PageInterface{
+import Input.ActionsInput;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import dataBase.DataBase;
 
-        private static SeeDetails instance;
-        private String name;
+import java.util.ArrayList;
 
-        private SeeDetails(String name) {
-            this.name = name;
+public class SeeDetails implements PageInterface {
+
+    private static SeeDetails instance;
+    private String name;
+
+    private SeeDetails(String name) {
+        this.name = name;
+    }
+
+    public static SeeDetails getInstance() {
+        if (instance == null) {
+            instance = new SeeDetails("See Details");
         }
+        return instance;
+    }
 
-        public static SeeDetails getInstance() {
-            if (instance == null) {
-                instance = new SeeDetails("SeeDetails");
-            }
-            return instance;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public String getName() {
-            return name;
-        }
-
-        public boolean action(String feature, String[] args) {
-            // see details only has one feature so feature is not used
-            return false;
-        }
+    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.createObjectNode();
+    }
 }

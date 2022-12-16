@@ -5,32 +5,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import dataBase.DataBase;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
-public class HomePageNotAuthenticated implements PageInterface {
+public class Upgrades implements PageInterface {
 
+    private static Upgrades instance;
     private String name;
-    private static HomePageNotAuthenticated instance;
 
-    private HomePageNotAuthenticated(String name) {
+    private Upgrades(String name) {
         this.name = name;
     }
 
-    public static HomePageNotAuthenticated getInstance() {
+    public static Upgrades getInstance() {
         if (instance == null) {
-            instance = new HomePageNotAuthenticated("Homepage neautentificat");
+            instance = new Upgrades("Upgrades");
         }
         return instance;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public ObjectNode action(ActionsInput actions, DataBase dataBase) {
-        // home page not authenticated does not have any features
         ObjectMapper mapper = new ObjectMapper();
         return mapper.createObjectNode();
     }

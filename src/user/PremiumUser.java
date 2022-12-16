@@ -7,8 +7,7 @@ import movie.Movie;
 
 import java.util.ArrayList;
 
-public class StandardUser implements UserInterface {
-
+public class PremiumUser implements UserInterface {
     private String name;
     private String password; //xxhash mfs
     private String accountType;
@@ -16,13 +15,13 @@ public class StandardUser implements UserInterface {
     private int balance;
     private int tokensCount;
     private int numFreePremiumMovies;
-    // new array list of strings for premium movies
+    // new array list of strings for accountType movies
     private ArrayList<Movie> purchasedMovies;
     private ArrayList<Movie> watchedMovies;
     private ArrayList<Movie> likedMovies;
     private ArrayList<Movie> ratedMovies;
 
-    public StandardUser(String name, String password, String accountType, String country, int balance) {
+    public PremiumUser(String name, String password, String accountType, String country, int balance) {
         this.name = name;
         this.password = password;
         this.accountType = accountType;
@@ -36,7 +35,7 @@ public class StandardUser implements UserInterface {
         ratedMovies = new ArrayList<Movie>();
     }
 
-    public StandardUser() {
+    public PremiumUser() {
         this.name = "";
         this.password = "";
         this.accountType = "false";
@@ -216,14 +215,13 @@ public class StandardUser implements UserInterface {
         return output;
     }
 
-
     @Override
     public String toString() {
         return "Name: " + name
-                + " Premium: " + accountType
+                + " accountType: " + accountType
                 + " Country: " + country
                 + " Balance: " + balance
                 + " Tokens: " + tokensCount
-                + " Premium Movies: " + numFreePremiumMovies;
+                + " accountType Movies: " + numFreePremiumMovies;
     }
 }

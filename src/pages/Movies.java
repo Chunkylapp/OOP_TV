@@ -1,38 +1,39 @@
 package pages;
 
-public class Movies implements PageInterface{
+import Input.ActionsInput;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import dataBase.DataBase;
 
-        private static Movies instance;
-        private String name;
+import java.util.ArrayList;
 
-        private Movies(String name) {
-            this.name = name;
+public class Movies implements PageInterface {
+
+    private static Movies instance;
+    private String name;
+
+    private Movies(String name) {
+        this.name = name;
+    }
+
+    public static Movies getInstance() {
+        if (instance == null) {
+            instance = new Movies("movies");
         }
+        return instance;
+    }
 
-        public static Movies getInstance() {
-            if (instance == null) {
-                instance = new Movies("Movies");
-            }
-            return instance;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public String getName() {
-            return name;
+    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+        switch (actions.getFeature()) {
+            case "search":
+                return dataBase.getCurrentUser().getJson();
+            case "filter":
+                return dataBase.getCurrentUser().getJson();
         }
-
-        public boolean action(String feature, String[] args) {
-//            // to implement when movieDatabase is live
-//            dataBase.MovieDatabase db = dataBase.MovieDatabase.getInstance();
-//            if (args.length == 0) {
-//                System.out.println("No movie name provided");
-//                return;
-//            }
-//            String movieName = args[0];
-//            if (db.getMovie(movieName) == null) {
-//                System.out.println("Movie not found");
-//                return;
-//            }
-//            System.out.println(db.getMovie(movieName).toString());
-            return false;
-        }
+        return null;
+    }
 }

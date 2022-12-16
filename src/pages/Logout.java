@@ -1,27 +1,46 @@
 package pages;
 
-public class Logout implements PageInterface{
+import Input.ActionsInput;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import dataBase.DataBase;
 
-        private static Logout instance;
-        private String name;
+import java.util.ArrayList;
 
-        private Logout(String name) {
-            this.name = name;
+public class Logout implements PageInterface {
+
+    private static Logout instance;
+    private String name;
+
+    private Logout(String name) {
+        this.name = name;
+    }
+
+    public static Logout getInstance() {
+        if (instance == null) {
+            instance = new Logout("logout");
+        }
+        return instance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode out = mapper.createObjectNode();
+
+        if (dataBase.getCurrentUser() == null) {
+            out.put("error", "Error");
+            out.put("currentMoviesList", mapper.createArrayNode());
+            out.put("currentUser", (String) null);
+            return out;
         }
 
-        public static Logout getInstance() {
-            if (instance == null) {
-                instance = new Logout("Logout");
-            }
-            return instance;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public boolean action(String feature, String[] args) {
-            // logout only has one feature so feature is not used
-            return false;
-        }
+        dataBase.setCurrentPage(HomePageNotAuthenticated.getInstance());
+        dataBase.setCurrentUser(null);
+        return out;
+    }
 }

@@ -1,32 +1,60 @@
 package pages;
 
+import Input.ActionsInput;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import dataBase.DataBase;
 import user.StandardUser;
+import user.UserFactory;
+import user.UserInterface;
 
-public class Register implements PageInterface{
+import java.util.ArrayList;
 
-        private static Register instance;
-        private String name;
+public class Register implements PageInterface {
 
-        private Register(String name) {
-            this.name = name;
+    private static Register instance;
+    private String name;
+
+    private Register(String name) {
+        this.name = name;
+    }
+
+    public static PageInterface getInstance() {
+        if (instance == null) {
+            instance = new Register("register");
+        }
+        return instance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode out = mapper.createObjectNode();
+
+        if (dataBase.getUser(actions.getCredentials().getName()) != null) {
+            dataBase.setCurrentPage(HomePageNotAuthenticated.getInstance());
+            out.put("error", "Error");
+            out.put("currentMoviesList", mapper.createArrayNode());
+            out.put("currentUser", (String) null);
+            return out;
         }
 
-        public static Register getInstance() {
-            if (instance == null) {
-                instance = new Register("Register");
-            }
-            return instance;
-        }
+        UserInterface user = UserFactory.getUser(actions.getCredentials().getName(),
+                actions.getCredentials().getPassword(), actions.getCredentials().getAccountType(),
+                actions.getCredentials().getCountry(), actions.getCredentials().getBalance());
 
-        public String getName() {
-            return name;
-        }
+        dataBase.getUsers().add(user);
+        dataBase.setCurrentPage(HomePageAuthenticated.getInstance());
+        dataBase.setCurrentUser(user);
 
-        public boolean action(String feature, String[] args) {
-            // register only has one feature so feature is not used
-            if(args.length < 5)
-                return false;
-            dataBase.DataBase.addUser(new StandardUser(args[0], args[1], args[2], Integer.parseInt(args[3])));
-            return true;
-        }
+        out.put("error", (String) null);
+        out.put("currentMoviesList", mapper.createArrayNode());
+        out.put("currentUser", user.getJson());
+        return out;
+    }
 }

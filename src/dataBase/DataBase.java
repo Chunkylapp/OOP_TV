@@ -1,43 +1,42 @@
 package dataBase;
 
+import movie.Movie;
+import pages.PageInterface;
 import user.UserInterface;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class DataBase {
-    private static ArrayList<UserInterface> users = null;
+
+    private ArrayList<UserInterface> users = null;
+    private ArrayList<Movie> movies = null;
+    private PageInterface currentPage = null;
+    private UserInterface currentUser = null;
 
     // to implement for movies
 
     public DataBase() {
         users = new ArrayList<UserInterface>();
+        // add all pages to pages array list
+        movies = new ArrayList<Movie>();
     }
 
-    public static ArrayList<UserInterface> getUsersInstance() {
-        if (users == null) {
+    public ArrayList<UserInterface> getUsers() {
+        if (this.users == null) {
             users = new ArrayList<UserInterface>();
         }
         return users;
     }
 
-    public static void addUser(UserInterface user) {
-        users.add(user);
-    }
-
-    public static void removeUser(UserInterface user) {
-        users.remove(user);
-    }
-
-    public static void removeUser(String name) {
-        for (UserInterface user : users) {
-            if (user.getName().equals(name)) {
-                users.remove(user);
-                break;
-            }
+    public ArrayList<Movie> getMovies() {
+        if (movies == null) {
+            movies = new ArrayList<Movie>();
         }
+        return movies;
     }
 
-    public static UserInterface getUser(String name) {
+    public UserInterface getUser(String name) {
         for (UserInterface user : users) {
             if (user.getName().equals(name)) {
                 return user;
@@ -46,28 +45,20 @@ public class DataBase {
         return null;
     }
 
-    public static boolean containsUser(String name) {
-        for (UserInterface user : users) {
-            if (user.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+    public void setCurrentUser(UserInterface user) {
+        currentUser = user;
     }
 
-    public static boolean containsUser(UserInterface user) {
-        return users.contains(user);
+    public UserInterface getCurrentUser() {
+        return currentUser;
     }
 
-    public static void clear() {
-        users.clear();
+    public void setCurrentPage(PageInterface page) {
+        currentPage = page;
     }
 
-    public static int size() {
-        return users.size();
+    public PageInterface getCurrentPage() {
+        return currentPage;
     }
 
-    public static boolean isEmpty() {
-        return users.isEmpty();
-    }
 }

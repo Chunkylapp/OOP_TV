@@ -1,9 +1,16 @@
 package user;
 
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import movie.Movie;
+
+import java.util.ArrayList;
+
 public interface UserInterface {
     public String getName();
 
-    public boolean getPremium();
+    public String getPassword();
+    public String getAccountType();
 
     public String getCountry();
 
@@ -17,7 +24,7 @@ public interface UserInterface {
 
     public void setPassword(String password);
 
-    public void setPremium(boolean premium);
+    public void setAccountType(String accountType);
 
     public void setCountry(String country);
 
@@ -25,18 +32,26 @@ public interface UserInterface {
 
     public void setTokensCount(int tokensCount);
 
-    public void setNumFreePremiumMovies(int numPremiumMovies);
+    public void setNumFreePremiumMovies(int numFreePremiumMovies);
 
     public boolean comparePassHash(String hashedPass);
 
-    public void addPurchasedMovie(String movieName);
+    public ArrayList<Movie> getPurchasedMovies();
 
-    public void addWatchedMovie(String movieName);
+    public ArrayList<Movie> getWatchedMovies();
 
-    public void addLikedMovie(String movieName);
+    public ArrayList<Movie> getLikedMovies();
 
-    public void addRatedMovie(String movieName);
+    public ArrayList<Movie> getRatedMovies();
 
-    public void userToJSON();
+    public ArrayNode getPurchasedMoviesJson();
+
+    public ArrayNode getWatchedMoviesJson();
+
+    public ArrayNode getLikedMoviesJson();
+
+    public ArrayNode getRatedMoviesJson();
+
+    public ObjectNode getJson();
 
 }
