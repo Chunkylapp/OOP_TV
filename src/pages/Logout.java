@@ -1,21 +1,34 @@
 package pages;
 
-import Input.ActionsInput;
+import input.ActionsInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import dataBase.DataBase;
+import database.DataBase;
 
-import java.util.ArrayList;
-
-public class Logout implements PageInterface {
+/**
+ * Class Logout implements the logout page
+ * implements the PageInterface
+ * built using the Singleton design pattern
+ */
+public final class Logout implements PageInterface {
 
     private static Logout instance;
     private String name;
 
-    private Logout(String name) {
+    /**
+     * Constructor
+     *
+     * @param name the page's name
+     */
+    private Logout(final String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the instance
+     *
+     * @return the instance
+     */
     public static Logout getInstance() {
         if (instance == null) {
             instance = new Logout("logout");
@@ -23,11 +36,23 @@ public class Logout implements PageInterface {
         return instance;
     }
 
+    /**
+     * Getter for the page's name
+     *
+     * @return the page's name
+     */
     public String getName() {
         return name;
     }
 
-    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+    /**
+     * Method implements the page's functionality
+     *
+     * @param actions  the input actions
+     * @param dataBase the database
+     * @return a JSON object
+     */
+    public ObjectNode action(final ActionsInput actions, final DataBase dataBase) {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode out = mapper.createObjectNode();

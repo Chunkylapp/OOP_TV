@@ -1,17 +1,29 @@
-package Input;
+package input;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class implements the credentials of a user
+ */
 public class Credentials {
     private String name;
-    private String password; //xxhash mfs
+    private String password;
     private String accountType;
     private String country;
     private int balance;
 
-    public Credentials(String name, String passowrd, String country, String accountType, int balance) {
+    /**
+     * Constructor
+     *
+     * @param name        name of the user
+     * @param passowrd    password of the user
+     * @param country     country of the user
+     * @param accountType account type of the user
+     * @param balance     balance of the user
+     */
+    public Credentials(final String name, final String passowrd,
+                       final String country, final String accountType, final int balance) {
         this.name = name;
         this.password = passowrd;
         this.accountType = accountType;
@@ -19,6 +31,9 @@ public class Credentials {
         this.balance = balance;
     }
 
+    /**
+     * Default constructor
+     */
     public Credentials() {
         this.name = "";
         this.password = "";
@@ -27,57 +42,118 @@ public class Credentials {
         this.balance = 0;
     }
 
+    /**
+     * Name getter
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    public String getPassword(){
+    /**
+     * Password getter
+     *
+     * @return password
+     */
+    public String getPassword() {
         return password;
     }
 
+    /**
+     * Account type getter
+     *
+     * @return accountType
+     */
     public String getAccountType() {
         return accountType;
     }
 
+    /**
+     * Country getter
+     *
+     * @return country
+     */
     public String getCountry() {
         return country;
     }
 
+    /**
+     * Balance getter
+     *
+     * @return balance
+     */
     public int getBalance() {
         return balance;
     }
 
-    public void setName(String name) {
+    /**
+     * Name setter
+     *
+     * @param name name of the user
+     */
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public void setPassword(String password) {
+    /**
+     * Password setter
+     *
+     * @param password password of the user
+     */
+    public void setPassword(final String password) {
         this.password = password;
     }
 
-    public void setPremium(String accountType) {
+    /**
+     * Account type setter
+     *
+     * @param accountType account type of the user
+     */
+    public void setPremium(final String accountType) {
         this.accountType = accountType;
     }
 
-    public void setCountry(String country) {
+    /**
+     * Country setter
+     *
+     * @param country country of the user
+     */
+    public void setCountry(final String country) {
         this.country = country;
     }
 
-    public void setBalance(int balance) {
+    /**
+     * Balance setter
+     *
+     * @param balance balance of the user
+     */
+    public void setBalance(final int balance) {
         this.balance = balance;
     }
-    public ArrayList<String> getCredentials(){
+
+    /**
+     * Method returns the string representation of the object
+     *
+     * @return string representation of the object
+     */
+    public ArrayList<String> getCredentials() {
         ArrayList<String> credentials = new ArrayList<String>();
-        if(!Objects.equals(name, ""))
+        if (!Objects.equals(name, "")) {
             credentials.add(name);
-        if(!Objects.equals(password, ""))
+        }
+        if (!Objects.equals(password, "")) {
             credentials.add(password);
-        if(!Objects.equals(accountType, ""))
+        }
+        if (!Objects.equals(accountType, "")) {
             credentials.add(accountType);
-        if(!Objects.equals(country, ""))
+        }
+        if (!Objects.equals(country, "")) {
             credentials.add(country);
-        if(balance != 0)
+        }
+        if (balance != 0) {
             credentials.add(Integer.toString(balance));
+        }
         return credentials;
     }
 }

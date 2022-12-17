@@ -1,21 +1,32 @@
 package pages;
 
-import Input.ActionsInput;
+import input.ActionsInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import dataBase.DataBase;
+import database.DataBase;
 
-import java.util.ArrayList;
-
-public class HomePageNotAuthenticated implements PageInterface {
+/**
+ * Class HomePageNotAuthenticated implements the home page for an authenticated user
+ * it implements the PageInterface
+ * built using the Singleton design pattern
+ */
+public final class HomePageNotAuthenticated implements PageInterface {
 
     private String name;
     private static HomePageNotAuthenticated instance;
 
-    private HomePageNotAuthenticated(String name) {
+    /**
+     * Constructor
+     * @param name the page's name
+     */
+    private HomePageNotAuthenticated(final String name) {
         this.name = name;
     }
 
+    /**
+     * Getter for the instance
+     * @return the instance
+     */
     public static HomePageNotAuthenticated getInstance() {
         if (instance == null) {
             instance = new HomePageNotAuthenticated("Homepage neautentificat");
@@ -23,13 +34,23 @@ public class HomePageNotAuthenticated implements PageInterface {
         return instance;
     }
 
+    /**
+     * Getter for the page's name
+     * @return the page's name
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * Method that implements the page's functionality
+     * @param actions the actions input
+     * @param dataBase the database
+     * @return a JSON object
+     */
     @Override
-    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+    public ObjectNode action(final ActionsInput actions, final DataBase dataBase) {
         // home page not authenticated does not have any features
         ObjectMapper mapper = new ObjectMapper();
         return mapper.createObjectNode();

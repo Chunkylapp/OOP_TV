@@ -6,52 +6,178 @@ import movie.Movie;
 
 import java.util.ArrayList;
 
+/**
+ * Interface for user classes
+ */
 public interface UserInterface {
-    public String getName();
 
-    public String getPassword();
-    public String getAccountType();
+    /**
+     * Getter for the name of the user
+     *
+     * @return the name of the user
+     */
+    String getName();
 
-    public String getCountry();
+    /**
+     * Getter for the password of the user
+     *
+     * @return the password of the user
+     */
+    String getPassword();
 
-    public int getBalance();
+    /**
+     * Getter for the account type of the user
+     *
+     * @return the account type of the user
+     */
+    String getAccountType();
 
-    public int getTokensCount();
+    /**
+     * Getter for the country of the user
+     *
+     * @return the country of the user
+     */
+    String getCountry();
 
-    public int getNumFreePremiumMovies();
+    /**
+     * Getter for the balance of the user
+     *
+     * @return the balance of the user
+     */
+    int getBalance();
 
-    public void setName(String name);
+    /**
+     * Getter for the tokens of the user
+     *
+     * @return the tokens of the user
+     */
+    int getTokensCount();
 
-    public void setPassword(String password);
+    /**
+     * Getter for the ammount of free premium movies
+     *
+     * @return the ammount of free premium movies
+     */
+    int getNumFreePremiumMovies();
 
-    public void setAccountType(String accountType);
+    /**
+     * Setter for the name of the user
+     *
+     * @param name the name of the user
+     */
+    void setName(String name);
 
-    public void setCountry(String country);
+    /**
+     * Setter for the password of the user
+     *
+     * @param password the password of the user
+     */
+    void setPassword(String password);
 
-    public void setBalance(int balance);
+    /**
+     * Setter for the account type of the user
+     *
+     * @param accountType the account type of the user
+     */
+    void setAccountType(String accountType);
 
-    public void setTokensCount(int tokensCount);
+    /**
+     * Setter for the country of the user
+     *
+     * @param country the country of the user
+     */
+    void setCountry(String country);
 
-    public void setNumFreePremiumMovies(int numFreePremiumMovies);
+    /**
+     * Setter for the balance of the user
+     *
+     * @param balance the balance of the user
+     */
+    void setBalance(int balance);
 
-    public boolean comparePassHash(String hashedPass);
+    /**
+     * Setter for the tokens of the user
+     *
+     * @param tokensCount the tokens of the user
+     */
+    void setTokensCount(int tokensCount);
 
-    public ArrayList<Movie> getPurchasedMovies();
+    /**
+     * Setter for the ammount of free premium movies
+     *
+     * @param numFreePremiumMovies the ammount of free premium movies
+     */
+    void setNumFreePremiumMovies(int numFreePremiumMovies);
 
-    public ArrayList<Movie> getWatchedMovies();
+    /**
+     * Method used for comparing hashed passwords
+     *
+     * @param hashedPass the hashed password
+     * @return true if the passwords match, false otherwise
+     */
+    boolean comparePassHash(String hashedPass);
 
-    public ArrayList<Movie> getLikedMovies();
+    /**
+     * Getter for the purchased movies of the user
+     *
+     * @return the purchased movies of the user
+     */
+    ArrayList<Movie> getPurchasedMovies();
 
-    public ArrayList<Movie> getRatedMovies();
+    /**
+     * Getter for the favorite movies of the user
+     *
+     * @return the favorite movies of the user
+     */
+    ArrayList<Movie> getWatchedMovies();
 
-    public ArrayNode getPurchasedMoviesJson();
+    /**
+     * Getter for the liked movies of the user
+     *
+     * @return the liked movies of the user
+     */
+    ArrayList<Movie> getLikedMovies();
 
-    public ArrayNode getWatchedMoviesJson();
+    /**
+     * Getter for the rated movies of the user
+     *
+     * @return the rated movies of the user
+     */
+    ArrayList<Movie> getRatedMovies();
 
-    public ArrayNode getLikedMoviesJson();
+    /**
+     * Method converts the purchased movies to a JSON array
+     *
+     * @return the purchased movies as a JSON array
+     */
+    ArrayNode getPurchasedMoviesJson();
 
-    public ArrayNode getRatedMoviesJson();
+    /**
+     * Method converts the watched movies to JSON array
+     *
+     * @return the watched movies as a JSON array
+     */
+    ArrayNode getWatchedMoviesJson();
 
-    public ObjectNode getJson();
+    /**
+     * Method converts the liked movies to JSON array
+     *
+     * @return the liked movies as a JSON array
+     */
+    ArrayNode getLikedMoviesJson();
+
+    /**
+     * Method converts the rated movies to JSON array
+     *
+     * @return the rated movies as a JSON array
+     */
+    ArrayNode getRatedMoviesJson();
+
+    /**
+     * Method converts the user to a JSON object
+     *
+     * @return the user as a JSON object
+     */
+    ObjectNode getJson();
 
 }

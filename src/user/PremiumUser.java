@@ -7,6 +7,9 @@ import movie.Movie;
 
 import java.util.ArrayList;
 
+/**
+ * Class that represents a premium user.
+ */
 public class PremiumUser implements UserInterface {
     private String name;
     private String password; //xxhash mfs
@@ -21,7 +24,16 @@ public class PremiumUser implements UserInterface {
     private ArrayList<Movie> likedMovies;
     private ArrayList<Movie> ratedMovies;
 
-    public PremiumUser(String name, String password, String accountType, String country, int balance) {
+    /**
+     * Constructor for a premium user.
+     * @param name the name of the user
+     * @param password the password of the user
+     * @param country the country of the user
+     * @param balance the balance of the user
+     */
+    public PremiumUser(final String name, final String password,
+                       final String accountType, final String country,
+                       final int balance) {
         this.name = name;
         this.password = password;
         this.accountType = accountType;
@@ -35,6 +47,9 @@ public class PremiumUser implements UserInterface {
         ratedMovies = new ArrayList<Movie>();
     }
 
+    /**
+     * Default constructor for a premium user.
+     */
     public PremiumUser() {
         this.name = "";
         this.password = "";
@@ -50,113 +65,209 @@ public class PremiumUser implements UserInterface {
     }
 
 
+    /**
+     * Getter for the name of the user.
+     * @return the name of the user
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * Getter for the password of the user.
+     * @return the password of the user
+     */
     @Override
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Getter for the account type of the user.
+     * @return the account type of the user
+     */
     @Override
     public String getAccountType() {
         return accountType;
     }
 
+    /**
+     * Getter for the country of the user.
+     * @return the country of the user
+     */
     @Override
     public String getCountry() {
         return country;
     }
 
+    /**
+     * Getter for the balance of the user.
+     * @return the balance of the user
+     */
     @Override
     public int getBalance() {
         return balance;
     }
 
+    /**
+     * Getter for the tokens count of the user.
+     * @return the tokens count of the user
+     */
     @Override
     public int getTokensCount() {
         return tokensCount;
     }
 
+    /**
+     * Getter for the number of free premium movies of the user.
+     * @return the number of free premium movies of the user
+     */
     @Override
     public int getNumFreePremiumMovies() {
         return numFreePremiumMovies;
     }
 
+    /**
+     * Getter for the purchased movies of the user.
+     * @return the purchased movies of the user
+     */
     @Override
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
+    /**
+     * Setter for the password of the user.
+     * @param password the password of the user
+     */
     @Override
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
+    /**
+     * Setter for the account type of the user.
+     * @param accountType the account type of the user
+     */
     @Override
-    public void setAccountType(String accountType) {
+    public void setAccountType(final String accountType) {
         this.accountType = accountType;
     }
 
+    /**
+     * Setter for the country of the user.
+     * @param country the country of the user
+     */
     @Override
-    public void setCountry(String country) {
+    public void setCountry(final String country) {
         this.country = country;
     }
 
+    /**
+     * Setter for the balance of the user.
+     * @param balance the balance of the user
+     */
     @Override
-    public void setBalance(int balance) {
+    public void setBalance(final int balance) {
         this.balance = balance;
     }
 
+    /**
+     * Setter for the tokens count of the user.
+     * @param tokensCount the tokens count of the user
+     */
     @Override
-    public void setTokensCount(int tokensCount) {
+    public void setTokensCount(final int tokensCount) {
         this.tokensCount = tokensCount;
     }
 
+    /**
+     * Setter for the number of free premium movies of the user.
+     * @param numFreePremiumMovies the number of free premium movies of the user
+     */
     @Override
-    public void setNumFreePremiumMovies(int numFreePremiumMovies) {
+    public void setNumFreePremiumMovies(final int numFreePremiumMovies) {
         this.numFreePremiumMovies = numFreePremiumMovies;
     }
 
+    /**
+     * Comparator for hashed passwords.
+     * @param hashedPass the hashed password
+     */
     @Override
-    public boolean comparePassHash(String hashedPass) {
+    public boolean comparePassHash(final String hashedPass) {
         return hashedPass.equals(password);
     }
 
-    public void addPurchasedMovie(Movie movieName) {
+    /**
+     * Method that adds a movie to the purchased movies of the user.
+     * @param movieName the movie to be added
+     */
+    public void addPurchasedMovie(final Movie movieName) {
         purchasedMovies.add(movieName);
     }
 
-    public void addWatchedMovie(Movie movieName) {
+    /**
+     * Method that adds a movie to the watched movies of the user.
+     * @param movieName the movie to be added
+     */
+    public void addWatchedMovie(final Movie movieName) {
         watchedMovies.add(movieName);
     }
 
-    public void addLikedMovie(Movie movieName) {
+    /**
+     * Method that adds a movie to the liked movies of the user.
+     * @param movieName the movie to be added
+     */
+    public void addLikedMovie(final Movie movieName) {
         likedMovies.add(movieName);
     }
 
-    public void addRatedMovie(Movie movieName) {
+    /**
+     * Method that adds a movie to the rated movies of the user.
+     * @param movieName the movie to be added
+     */
+    public void addRatedMovie(final Movie movieName) {
         ratedMovies.add(movieName);
     }
 
+    /**
+     * Method that returns the purchased movies of the user.
+     * @return the purchased movies
+     */
     public ArrayList<Movie> getPurchasedMovies() {
         return purchasedMovies;
     }
 
+    /**
+     * Method that returns the watched movies of the user.
+     * @return the watched movies
+     */
     public ArrayList<Movie> getWatchedMovies() {
         return watchedMovies;
     }
 
+    /**
+     * Method that returns the liked movies of the user.
+     * @return the liked movies
+     */
     public ArrayList<Movie> getLikedMovies() {
         return likedMovies;
     }
 
+    /**
+     * Method that returns the rated movies of the user.
+     * @return the rated movies
+     */
     public ArrayList<Movie> getRatedMovies() {
         return ratedMovies;
     }
 
+    /**
+     * Method that returns the purchased movies of the user as a JSON array.
+     * @return the purchased movies as a JSON array
+     */
     public ArrayNode getPurchasedMoviesJson() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
@@ -166,6 +277,10 @@ public class PremiumUser implements UserInterface {
         return arrayNode;
     }
 
+    /**
+     * Method that returns the watched movies of the user as a JSON array.
+     * @return the watched movies as a JSON array
+     */
     public ArrayNode getWatchedMoviesJson() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
@@ -175,6 +290,10 @@ public class PremiumUser implements UserInterface {
         return arrayNode;
     }
 
+    /**
+     * Method that returns the liked movies of the user as a JSON array.
+     * @return the liked movies as a JSON array
+     */
     public ArrayNode getLikedMoviesJson() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
@@ -184,6 +303,10 @@ public class PremiumUser implements UserInterface {
         return arrayNode;
     }
 
+    /**
+     * Method that returns the rated movies of the user as a JSON array.
+     * @return the rated movies as a JSON array
+     */
     public ArrayNode getRatedMoviesJson() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode arrayNode = mapper.createArrayNode();
@@ -193,6 +316,10 @@ public class PremiumUser implements UserInterface {
         return arrayNode;
     }
 
+    /**
+     * Method that returns the user as a JSON object.
+     * @return the user as a JSON object
+     */
     public ObjectNode getJson() {
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode output = mapper.createObjectNode();
@@ -215,6 +342,10 @@ public class PremiumUser implements UserInterface {
         return output;
     }
 
+    /**
+     * Method that returns the user as a string.
+     * @return the user as a string
+     */
     @Override
     public String toString() {
         return "Name: " + name

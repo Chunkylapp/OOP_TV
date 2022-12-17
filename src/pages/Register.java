@@ -1,25 +1,35 @@
 package pages;
 
-import Input.ActionsInput;
+import input.ActionsInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import dataBase.DataBase;
-import user.StandardUser;
+import database.DataBase;
 import user.UserFactory;
 import user.UserInterface;
 
-import java.util.ArrayList;
-
-public class Register implements PageInterface {
+/**
+ * Class Register implements the register page
+ * it has a method that creates a new user
+ * and adds it to the database
+ * built using the Singleton design pattern
+ */
+public final class Register implements PageInterface {
 
     private static Register instance;
     private String name;
 
-    private Register(String name) {
+    /**
+     * Constructor
+     * @param name page name
+     */
+    private Register(final String name) {
         this.name = name;
     }
 
+    /**
+     * Singleton instance getter
+     * @return instance
+     */
     public static PageInterface getInstance() {
         if (instance == null) {
             instance = new Register("register");
@@ -27,11 +37,22 @@ public class Register implements PageInterface {
         return instance;
     }
 
+    /**
+     * Getter for page name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    public ObjectNode action(ActionsInput actions, DataBase dataBase) {
+    /**
+     * Method that creates a new user
+     * and adds it to the database
+     * @param actions here we get the user's input
+     * @param dataBase here we add the new user
+     * @return a json with the result of the operation
+     */
+    public ObjectNode action(final ActionsInput actions, final DataBase dataBase) {
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode out = mapper.createObjectNode();

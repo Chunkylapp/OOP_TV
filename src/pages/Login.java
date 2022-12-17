@@ -1,26 +1,36 @@
 package pages;
 
-import Input.ActionsInput;
+import input.ActionsInput;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import dataBase.DataBase;
-import user.UserFactory;
+import database.DataBase;
 import user.UserInterface;
 
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
-
-public class Login implements PageInterface {
+/**
+ * Class Login implements the login page
+ * it implements the PageInterface
+ * built with the Singleton design pattern
+ */
+public final class Login implements PageInterface {
 
     private static Login instance;
     private String name;
 
-    private Login(String name) {
+    /**
+     * Constructor
+     *
+     * @param name page name
+     */
+    private Login(final String name) {
         this.name = name;
     }
 
+    /**
+     * Singleton instance getter
+     *
+     * @return instance
+     */
     public static Login getInstance() {
         if (instance == null) {
             instance = new Login("login");
@@ -28,11 +38,25 @@ public class Login implements PageInterface {
         return instance;
     }
 
+    /**
+     * Page name getter
+     *
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    public ObjectNode action(ActionsInput actions, DataBase dataBase) throws JsonProcessingException {
+    /**
+     * Method implements the page's functionality (login)
+     *
+     * @param actions  input actions
+     * @param dataBase database
+     * @return the next page
+     * @throws JsonProcessingException
+     */
+    public ObjectNode action(final ActionsInput actions, final DataBase dataBase)
+            throws JsonProcessingException {
         UserInterface user = dataBase.getUser(actions.getCredentials().getName());
 
         ObjectMapper mapper = new ObjectMapper();
@@ -54,7 +78,7 @@ public class Login implements PageInterface {
             return out;
         }
 
-        dataBase.setCurrentPage(HomePageNotAuthenticated.getInstance());
+        dataBase.setCurrentPage(HomePageAuthenticated.getInstance());
         dataBase.setCurrentUser(dataBase.getUser(actions.getCredentials().getName()));
 
         out.put("error", (String) null);
