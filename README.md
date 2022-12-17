@@ -37,7 +37,7 @@ The following classes are implemented using the Factory design pattern:
 
 The classes are scalable and can be used for a large scale project.
 
-If you are not interested in the detailed implementation, you can skip to the next section [^TLDR].
+If you are not interested in the detailed implementation, you can skip to the next section.
 
 - The pages are implemented using the singleton design pattern. This means that only one instance
   of each page can be created. This is useful because we don't want to have multiple instances of
@@ -63,9 +63,6 @@ If you are not interested in the detailed implementation, you can skip to the ne
   In the future, I will try to make it even more organized by splitting the long main method
   into smaller methods and by adding more comments. I recommend reading the code with the
   blocks minimized. This will make it easier to read.
-
-
-[^TLDR]: Overall the path the user can take across the website is the following:
 
 ![alt text](layout.png)
 
