@@ -64,6 +64,10 @@ If you are not interested in the detailed implementation, you can skip to the ne
   into smaller methods and by adding more comments. I recommend reading the code with the
   blocks minimized. This will make it easier to read.
 
+
+
+## Overall the path the user can take across the website is the following:
+
 ![alt text](layout.png)
 
 There are 2 types of users: standard and premium. The standard user can only watch movies
@@ -179,6 +183,8 @@ parsing an input JSON file and an output JSON file. The format can be seen in th
 The output is a JSON file that contains the information that the user requested. The format is
 similar.
 
+## Final thoughts
+
 In the end if you are interested in the implementation, you can check the code. If you are not
 interested in the implementation, I recommend you to check the code anyway. It's not that bad.
 
@@ -191,8 +197,7 @@ Stay classy :P
 
 
 
-
-- A word from our sponsor:
+A word from our sponsor:
 
   ![alt text](sponsor.gif)
 
